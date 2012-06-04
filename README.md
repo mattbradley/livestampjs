@@ -18,7 +18,7 @@ It's very simple: just add the `.livetimestamp` class and the `data-timestamp`
 attribute to the HTML element that you want to display the time ago text. The
 value of `data-timestamp` should be the millisecond Unix time (the number of
 milliseconds since January 1, 1970 12:00am UTC). This is the same value you
-would use in the JavaScript `Date()` constructor.
+would use in the JavaScript `new Date()` constructor.
 
 For instance:
 
