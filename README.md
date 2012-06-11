@@ -1,7 +1,7 @@
-livetimestamp
+Livestamp.js
 =============
 
-A simple, unobtrusive jQuery plugin that provides live "time ago" text to
+A simple, unobtrusive jQuery plugin that provides live "time-ago" text to
 your timestamped HTML elements using Moment.js. 
 
 Dependencies
@@ -10,23 +10,6 @@ Dependencies
 * [jQuery](http://jquery.com): you already know what this is
 * [Moment.js](http://momentjs.com): a great JavaScript library for parsing
   and displaying dates and times
-
-Usage
------
-
-It's very simple: just add the `.livetimestamp` class and the `data-timestamp`
-attribute to the HTML element that you want to display the time ago text. The
-value of `data-timestamp` should be the millisecond Unix time (the number of
-milliseconds since January 1, 1970 12:00am UTC). This is the same value you
-would use in the JavaScript `new Date()` constructor.
-
-For instance:
-
-    <span class="livetimestamp" data-timestamp="1338789242000"></span>
-
-will display something like `5 minutes ago` on your page. As time passes, the
-plugin will automatically update it to `6 minutes ago` then `7 minutes ago` and
-so on.
 
 License
 -------
