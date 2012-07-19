@@ -8,6 +8,7 @@
       ol#unit-tests ul { list-style-type: none; display: none; }
       ol#unit-tests li { cursor: pointer; }
       ol#unit-tests li.open ul { display: block; }
+      ::selection, ::-moz-selection { text-shadow: none; background-color: rgba(0, 0, 255, 0.15);}
     </style>
   </head>
   <body style="padding-top: 32px;">
@@ -19,6 +20,7 @@
             <h2>Unit Tests</h2>
           </div>
           <div class="span6" style="text-align: right;">
+            <h6>Your User Agent</h6>
             <h3 id="user-agent"></h3>
           </div>
         </div>
@@ -33,6 +35,7 @@
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="warp.js"></script>
     <script src="nodeunit.js"></script>
     <script src="moment.js"></script>
     <script src="livestamp.js"></script>

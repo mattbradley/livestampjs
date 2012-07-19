@@ -7,17 +7,111 @@
       body { padding-top: 32px; }
       code { white-space: nowrap; }
       hr { border-top-color: #aaa; }
-      .livestamp, #birth { font-weight: bold; }
+      footer { text-align: right; }
+      .livestamp-display, #birth { font-weight: bold; }
       .mono { font-family: Menlo, Monaco, Consolas, "Courier New", monospace; }
+      ::selection, ::-moz-selection { text-shadow: none; background-color: rgba(0, 0, 255, 0.15);}
     </style>
   </head>
   <body>
     <div class="container">
       <header class="hero-unit">
         <h1>Livestamp.js</h1>
-        <p>A simple, unobtrusive jQuery plugin that provides live "time-ago" text to your timestamped HTML elements using <a href="http://momentjs.com">Moment.js</a>.</p>
+        <p>
+          A simple, unobtrusive jQuery plugin that provides live, auto-updating
+          "time-ago" text to your timestamped HTML elements using
+          <a href="http://momentjs.com">Moment.js</a>.
+        </p>
       </header>
       <div class="row">
+        <div class="span8">
+          <section style="text-align: center;">
+            <div class="well">
+              <h3>&lt;span data-livestamp="551059500000"&gt;&lt;/span&gt;</h3>
+            </div>
+            <i class="icon-arrow-down"></i>
+            <div class="well">
+              <h3>&lt;span&gt;25 years ago&lt;/span&gt;</h3>
+            </div>
+          </section>
+          <h2>How to use:</h2>
+          <section>
+            <p>
+              <strong>No extra JavaScript required!</strong> Just use an empty
+              span with the <code>data-livestamp</code> attribute set to the
+              desired Unix timestamp (in seconds), like this:
+            </p>
+            <pre>You discovered Livestamp.js &lt;span data-livestamp="<span id="now-display"></span>"&gt;&lt;/span&gt;.</pre>
+            <p>
+              And you will see this: 
+            </p>
+            <div class="well">
+              You discovered Livestamp.js <span id="now" class="livestamp-display"></span>.
+            </div>
+            <p>
+              Wait half a minute &mdash; the livestamp will update automatically.
+            </p>
+          </section>
+          <hr />
+          <section>
+            <p>
+              By the way, <strong>you can use any element you want</strong>.
+              Just make sure the <code>data-livestamp</code> attribute has a
+              valid timestamp. The <code>&lt;abbr&gt;</code> element is a good
+              choice. For instance:
+            </p>
+            <pre>Not even &lt;abbr title="<span id="fiveminago-title"></span>" data-livestamp="<span id="fiveminago-display"></span>"&gt;&lt;/abbr&gt;,<br />you were still looking for the perfect jQuery time-ago plugin.</pre>
+            <p>
+              Will assume this:
+            </p>
+            <div class="well">
+              Not even <abbr id="fiveminago" class="livestamp-display" title=""></abbr>, you were still looking for the perfect jQuery time-ago plugin.
+            </div>
+          </section>
+          <hr />
+          <section>
+            <p>
+              <strong>You can even use timestamps in the future!</strong>
+              This works well for fortune-tellers, time travelers, and
+              meteorologists. Just don't go
+              <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date#Description" target="_blank">too far</a>
+              into the future (or the past for that matter).
+            </p>
+            <pre>You will start using Livestamp.js in your own project<br />&lt;span data-livestamp="<span id="twentyminfromnow-display"></span>"&gt;&lt;/span&gt;.</pre>
+            <p>
+              Will predict this:
+            </p>
+            <div class="well">
+              You will start using Livestamp.js in your own project
+              <span id="twentyminfromnow" class="livestamp-display"></span>.
+            </div>
+          </section>
+          <hr />
+          <section>
+            <p>
+              Afraid of unobtrusive JavaScript? No sweat:
+              <strong>you can livestamp your elements manually using jQuery</strong>.
+              The <code>$.fn.livestamp()</code> function accepts a
+              <code>Date</code> object, a <code>Moment</code> object, or a
+              <code>Number</code> timestamp.
+            </p>
+            <pre>Matt Bradley was born &lt;span id="birth"&gt;on June 18, 1987&lt;/span&gt;.<br />&lt;script&gt;<br />  function livestampBirthday() {<br />    $('#birth').livestamp(new Date('June 18, 1987'));<br />  }<br />&lt;/script&gt;</pre>
+            <p>
+              Click the button to livestamp my birthday:
+            </p>
+            <div class="well">
+              Matt Bradley was born <span id="birth">on June 18, 1987</span>.
+            </div>
+            <p>
+              <button class="btn btn-success mono" id="livestamp-birthday">livestampBirthday()</button>
+              <button class="btn btn-success mono" id="destroy-birth">$('#birth').livestamp('destroy')</button>
+            </p>
+            <p>
+              Use <code>$.fn.livestamp('destroy')</code> to remove all
+              livestamp data and restore the element's original HTML.
+            </p>
+          </section>
+        </div>
         <div class="span4">
           <h2>It's very simple:</h2>
           <p>
@@ -31,95 +125,31 @@
             Date()</code> constructor.
           </p>
         </div>
-        <div class="span8">
-          <h2>How to use:</h2>
-          <section>
-            <p>
-              <strong>No JavaScript required!</strong> Just use an empty span
-              with the <code>.livestamp</code> class and set the value of
-              the <code>data-timestamp</code> attribute to the current Unix
-              time (in milliseconds), like this:
-            </p>
-            <pre>You discovered livestamp <br />&lt;span class="livestamp" data-timestamp="<span id="now-display"></span>"&gt;&lt;/span&gt;.</pre>
-            <p>
-              And you will see this: 
-              <div class="well">
-                You discovered livestamp <span id="now" class="livestamp" data-timestamp=""></span>.
-              </div>
-              Wait half a minute &mdash; the timestamp will update automatically.
-            </p>
-          </section>
-          <hr />
-          <section>
-            <p>
-              By the way, <strong>you can use any element you want</strong>.
-              Just make sure the <code>.livestamp</code> class and
-              <code>data-timestamp</code> attribute are included. The
-              <code>&lt;abbr&gt;</code> element is a good choice. For instance:
-            </p>
-            <pre>Not even<br />&lt;abbr title="<span id="fiveminago-title"></span>" class="livestamp" data-timestamp="<span id="fiveminago-display"></span>"&gt;&lt;/abbr&gt;,<br />you were still looking for the perfect jQuery time-ago plugin.</pre>
-            <p>
-              Will assume this:
-              <div class="well">
-                Not even <abbr title="" id="fiveminago" class="livestamp" data-timestamp=""></abbr>, you were still looking for the perfect jQuery time-ago plugin.
-              </div>
-            </p>
-          </section>
-          <hr />
-          <section>
-            <p>
-              <strong>You can even use timestamps in the future!</strong> This
-              works well with horoscope, fortune cookie, and meteorology
-              applications. For example:
-            </p>
-            <pre>You will start using livestamp in your own project<br />&lt;span class="livestamp" data-timestamp="<span id="twentyminfromnow-display"></span>"&gt;&lt;/span&gt;.</pre>
-            <p>
-              Will predict this:
-              <div class="well">
-                You will start using livestamp in your own project <span id="twentyminfromnow" class="livestamp" data-timestamp=""></span>.
-              </div>
-            </p>
-          </section>
-          <hr />
-          <section>
-            <p>
-              Afraid of automatic JavaScript? No sweat: <strong>you can add
-              elements to livestamp manually using jQuery</strong>. The
-              <code>$.fn.livestamp()</code> function accepts a <code>Date</code> object, a <code>Moment</code> object, or a <code>Number</code> (Unix time in milliseconds).
-            </p>
-            <pre>Matt Bradley was born &lt;span id="birth"&gt;on June 18, 1987&lt;/span&gt;.<br />&lt;script&gt;<br />  function livestampBirth() {<br />    $('#birth').livestamp(new Date('June 18, 1987'));<br />  }<br />&lt;/script&gt;</pre>
-            <p>
-              Click the button to livestamp my birthday:
-              <div class="well">
-                Matt Bradley was born <span id="birth">on June 18, 1987</span>.
-              </div>
-            </p>
-            <p>
-              <button class="btn btn-success mono" id="livestamp-birth">livestampBirth()</button>
-              <button class="btn btn-success mono" id="destroy-birth">$('#birth').livestamp('destroy')</button>
-            </p>
-          </section>
-        </div>
       </div>
+      <hr />
+      <footer>
+        &copy; 2012 Matt Bradley
+      </footer>
+      <br />
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="moment.js"></script>
     <script src="livestamp.js"></script>
     <script>
       $(document).ready(function() {
-        var now = +new Date(),
-            fiveminago = now - 5 * 60 * 1000,
+        var now = Math.floor(+new Date() / 1000),
+            fiveminago = now - 5 * 60,
             fiveminagotext = moment(fiveminago).format('h:mma'),
-            twentyminfromnow = now + 20 * 60 * 1000;
-        $('#now').attr('data-timestamp', now);
+            twentyminfromnow = now + 20 * 60;
+        $('#now').livestamp(now);
         $('#now-display').text(now);
-        $('#fiveminago').attr('title', fiveminagotext).attr('data-timestamp', fiveminago);
+        $('#fiveminago').attr('title', fiveminagotext).livestamp(fiveminago);
         $('#fiveminago-display').text(fiveminago);
         $('#fiveminago-title').text(fiveminagotext);
-        $('#twentyminfromnow').attr('data-timestamp', twentyminfromnow);
+        $('#twentyminfromnow').livestamp(twentyminfromnow);
         $('#twentyminfromnow-display').text(twentyminfromnow);
 
-        $('#livestamp-birth').click(function() {
+        $('#livestamp-birthday').click(function() {
           $('#birth').livestamp(new Date('June 18, 1987'));
         });
 
