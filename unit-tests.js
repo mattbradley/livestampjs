@@ -224,7 +224,7 @@ var suite = {
   },
 
   '$.livestamp functions': function(test) {
-    test.expect(3);
+    test.expect(4);
 
     var now = +new Date / 1000,
         tester,
@@ -237,6 +237,10 @@ var suite = {
     tester2 = $('<div data-livestamp="' + (now - 60 * 60) + '"></div>').appendTo(privateArea);
     $.livestamp.update();
     test.ok(tester.text() == 'a few seconds ago' && tester2.text() == 'an hour ago', '$.livestamp.update() updates the text of all livestamps');
+
+    $.livestamp.interval(2000);
+    test.equal($.livestamp.interval(), 2000, '$.livestamp.interval() correctly changes the update interval');
+    $.livestamp.interval(1000);
 
     tester = $('<div data-livestamp="' + now + '"></div>').appendTo('#test-area');
     $.livestamp.update();

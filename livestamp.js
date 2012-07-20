@@ -1,8 +1,9 @@
+/* Copyright (c) 2012 Matt Bradley | Released under the MIT License */
 (function($) {
-  var intervalTime = 1e3,
+  var updateInterval = 1e3,
       ls = 'livestamp',
       lsData = 'livestampdata',
-      intervalId,
+      paused = false,
       $livestamps = $([]),
 
   init = function() {
@@ -24,6 +25,12 @@
 
       $livestamps = $livestamps.add($jq);
     }
+  },
+
+  run = function() {
+    if (paused) return;
+    livestampGlobal.update();
+    setTimeout(run, updateInterval);
   },
 
   livestampGlobal = {
@@ -49,13 +56,18 @@
     },
 
     pause: function() {
-      clearInterval(intervalId);
+      paused = true;
     },
 
     resume: function() {
-      clearInterval(intervalId);
-      intervalId = setInterval(livestampGlobal.update, intervalTime);
-      livestampGlobal.update();
+      paused = false;
+      run();
+    },
+
+    interval: function(interval) {
+      if (interval === undefined)
+        return updateInterval;
+      updateInterval = interval;
     }
   },
 
