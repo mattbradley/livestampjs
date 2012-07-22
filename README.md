@@ -1,8 +1,8 @@
-Livestamp.js
-=============
+[Livestamp.js](http://mattbradley.github.com/stubble)
+=====================================================
 
-A simple, unobtrusive jQuery plugin that provides live "time-ago" text to
-your timestamped HTML elements using Moment.js. 
+A simple, unobtrusive jQuery plugin that provides auto-updating timeago text to
+your timestamped HTML elements using [Moment.js](http://momentjs.com).
 
 Dependencies
 ------------

@@ -19,9 +19,9 @@
       newData.moment = moment(timestamp);
 
       $jq.data(lsData, newData)
-         .empty()
-         .removeAttr('data-livestamp')
-         .removeData(ls);
+        .empty()
+        .removeAttr('data-livestamp')
+        .removeData(ls);
 
       $livestamps = $livestamps.add($jq);
     }
@@ -48,8 +48,17 @@
 
         if (data === undefined)
           toRemove.push(this);
-        else if (moment.isMoment(data.moment))
-          $this.html(data.moment.fromNow());
+        else if (moment.isMoment(data.moment)) {
+          var from = $this.html(),
+              to = data.moment.fromNow();
+
+          if (from != to) {
+            var e = $.Event('change.livestamp');
+            $this.trigger(e, [from, to]);
+            if (!e.isDefaultPrevented())
+              $this.html(to);
+          }
+        }
       });
 
       $livestamps = $livestamps.not(toRemove);
@@ -79,9 +88,11 @@
       if (typeof timestamp != 'number' && !moment.isMoment(timestamp))
         return $jq;
 
-      prep($jq, timestamp);
-      livestampGlobal.update();
+      $jq.each(function() {
+        prep($(this), timestamp);
+      });
 
+      livestampGlobal.update();
       return $jq;
     },
 
