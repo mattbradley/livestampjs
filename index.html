@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Livestamp.js</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="hero-unit">
+        <h1>Livestamp.js</h1>
+        <p>
+          A simple, unobtrusive jQuery plugin that provides auto-updating
+          timeago text to your timestamped HTML elements using
+          <a href="http://momentjs.com">Moment.js</a>.
+        </p>
+      </header>
+      <div class="row">
+        <div class="span8">
+          <article id="what-does-it-do">
+            <header>
+              <h2>What does it do?</h2>
+            </header>
+            <section>
+              <div id="original-span" class="well mono">
+                &lt;span data-livestamp="<span class="now-display"></span>"&gt;&lt;/span&gt;
+              </div>
+              <div id="it-does-this" class="hide">
+                <div class="down-arrow">&darr;</div>
+                <div class="well mono">
+                  &lt;span&gt;<span class="livestamp now hide"></span>&lt;/span&gt;
+                </div>
+              </div>
+            </section>
+          </article>
+          <article id="how-is-it-used">
+            <header>
+              <h2>How is it used?</h2>
+            </header>
+            <section>
+              <p>
+                <strong>No extra JavaScript required!</strong> Just use an empty
+                span with the <code>data-livestamp</code> attribute set to the
+                desired Unix timestamp (in seconds), like this:
+              </p>
+              <pre>You discovered Livestamp.js &lt;span data-livestamp="<span class="now-display"></span>"&gt;&lt;/span&gt;.</pre>
+              <p>
+                And you will see this: 
+              </p>
+              <div class="well">
+                You discovered Livestamp.js <span class="livestamp now livestamp-display"></span>.
+              </div>
+              <p>
+                Wait half a minute &mdash; the livestamp will update automatically.
+              </p>
+            </section>
+            <hr />
+            <section>
+              <p>
+                By the way, <strong>you can use any element you want</strong>.
+                Just make sure the <code>data-livestamp</code> attribute has a
+                valid timestamp. The <code>&lt;abbr&gt;</code> element is a good
+                choice. For instance:
+              </p>
+              <pre>Not even &lt;abbr title="<span id="fiveminago-title"></span>" data-livestamp="<span id="fiveminago-display"></span>"&gt;&lt;/abbr&gt;,<br />you were still looking for the perfect jQuery time-ago plugin.</pre>
+              <p>
+                Will assume this:
+              </p>
+              <div class="well">
+                Not even <abbr id="fiveminago" class="livestamp livestamp-display" title=""></abbr>, you were still looking for the perfect jQuery time-ago plugin.
+              </div>
+            </section>
+            <hr />
+            <section>
+              <p>
+                <strong>You can even use timestamps in the future!</strong>
+                This works well for fortune-tellers, time travelers, and
+                meteorologists. Just don't go
+                <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date#Description" target="_blank">too far</a>
+                into the future (or the past for that matter).
+              </p>
+              <pre>You will start using Livestamp.js in your own project<br />&lt;span data-livestamp="<span id="twentyminfromnow-display"></span>"&gt;&lt;/span&gt;.</pre>
+              <p>
+                Will predict this:
+              </p>
+              <div class="well">
+                You will start using Livestamp.js in your own project
+                <span id="twentyminfromnow" class="livestamp livestamp-display"></span>.
+              </div>
+            </section>
+            <hr />
+            <section>
+              <p>
+                Afraid of unobtrusive JavaScript? No sweat:
+                <strong>you can livestamp your elements manually using jQuery</strong>.
+                The <code>$.fn.livestamp()</code> function accepts a
+                <code>Date</code> object, a <code>Moment</code> object, or a
+                <code>Number</code> timestamp.
+              </p>
+              <pre>Matt Bradley was born &lt;span id="birth"&gt;on June 18, 1987&lt;/span&gt;.<br />&lt;script&gt;<br />  function livestampBirthday() {<br />    $('#birth').livestamp(new Date('June 18, 1987'));<br />  }<br />&lt;/script&gt;</pre>
+              <p>
+                Use the buttons to try it out:
+              </p>
+              <p>
+                <button class="btn btn-success mono" id="livestamp-birthday">livestampBirthday()</button>
+                <button class="btn btn-success mono" id="destroy-birth">$('#birth').livestamp('destroy')</button>
+              </p>
+              <div class="well">
+                Matt Bradley was born <span id="birth" class="livestamp">on June 18, 1987</span>.
+              </div>
+              <p>
+                Use <code>$.fn.livestamp('destroy')</code> to remove all
+                livestamp data and restore the element's original HTML.
+              </p>
+            </section>
+            <hr />
+            <section>
+              <p>
+                <strong>Livestamped elements will let you know before they change</strong>;
+                they're just thoughtful like that. Subscribe to the
+                <code>change.livestamp</code> event: it's triggered right
+                before the text is changed. Use this to implement stuff like
+                custom animations:
+              </p>
+              <pre>This fade-in-fade-out animation started &lt;span id="animation"&gt;&lt;/span&gt;.<br />&lt;script&gt;<br />  $('#animation').on('change.livestamp', function(event, from, to) {<br />    event.preventDefault(); // Stop the text from changing automatically<br />    $(this).fadeOut(function() {<br />      $(this).html(to).fadeIn();<br />    }<br />  }).livestamp();<br />&lt;/script&gt;</pre>
+              <p>
+                Will create this custom change animation:
+              </p>
+              <div class="well">
+                This fade-in-fade-out animation started <span id="animation" class="livestamp-display"></span>.
+              </div>
+            </section>
+          </article>
+        </div>
+        <div class="span4">
+          <article>
+            <header>
+              <h2>Where can I get it?</h2>
+            </header>
+            <section>
+              <p>
+                From the <a href="https://github.com/mattbradley/livestampjs">Livestamp.js GitHub repository</a>.
+              </p>
+            </section>
+          </article>
+          <article>
+            <header>
+              <h2>Is it free?</h2>
+            </header>
+            <section>
+              <p>
+                Of course! Livestamp.js is freely distributable under the
+                <a href="http://www.opensource.org/licenses/MIT">MIT License</a>,
+                which means you can pretty much do anything you want with it as
+                long as you keep my copyright on the source code.
+              </p>
+            </section>
+          </article>
+          <article>
+            <header>
+              <h2>Is it buggy?</h2>
+            </header>
+            <section>
+              I hope not! Check out the <a href="tests.html">unit tests</a>
+              to run the test suite in your browser.
+            </section>
+          </article>
+          <article>
+            <header>
+              <h2>What if I do find a bug?</h2>
+            </header>
+            <section>
+              Create an issue on the
+              <a href="https://github.com/mattbradley/livestampjs/issues">Livestamp.js issue page</a>.
+            </section>
+          </article>
+          <article>
+            <header>
+              <h2>What about suggestions?</h2>
+            </header>
+            <section>
+              I guess those are okay, but come on! You're a programmer for cryin' out loud!
+              <a href="https://github.com/mattbradley/livestampjs">Fork the repo</a>
+              and make a contribution to society by implementing it yourself.
+            </section>
+          </article>
+          <article>
+            <header>
+              <h2>What is Moment.js?</h2>
+            </header>
+            <section>
+              <p>
+                Only the most awesome JavaScript date library. Livestamp.js
+                uses Moment's formatting methods to generate the timeago text.
+                It has a lot of other great features, too.
+                <a href="http://momentjs.com" target="_blank">Check it out</a>!
+            </section>
+          </article>
+          <article>
+            <header>
+              <h2>&iexcl;No hablo ingl&eacute;s!</h2>
+            </header>
+            <section>
+              <p>
+                &iexcl;No hay problema! Since Livestamp.js uses Moment.js to
+                generate all of the text, it also includes Moment's language support.
+                Check out its <a href="http://momentjs.com/docs/#/i18n/" target="_blank">i18n docs</a>
+                for info on using other languages.
+              </p>
+            </section>
+          </article>
+          <article>
+            <header>
+              <h2>Why not milliseconds?</h2>
+            </header>
+            <section>
+              <p>
+                So, you want to know why the timestamp has to be in seconds
+                instead of milliseconds? Yes, I know that JavaScript usually
+                handles timestamps in milliseconds (e.g., the
+                <code>new Date()</code> constructor). But there's a couple of
+                reasons why I chose to handle timestamps in seconds instead:
+              </p>
+              <ol>
+                <li>
+                  <p>
+                    A lot of server-side scripting languages (PHP, Ruby, Perl,
+                    Python, etc.) handle timestamps in seconds. This makes it easy
+                    to print out a timestamp into HTML. In Ruby, for instance:
+                  </p>
+                  <p class="mono">
+                    &lt;span<br />&nbsp;data-livestamp="&lt;%= Time.now.to_i %&gt;"&gt;<br />&lt;/span&gt;
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Some server-side languages only use 32-bit integers. For
+                    example, PHP (when running on a 32-bit machine) can only
+                    manage integers up to 2,147,483,647 (2<sup>31</sup> &minus; 1).
+                    Anything higher is cast to a float. PHP handles timestamps
+                    in seconds, so, if Livestamp.js used milliseconds instead
+                    of seconds, any timestamp being printed would have to be
+                    multiplied by 1,000 first. This means most millisecond
+                    Unix timestamps would be cast to floats. Since floats are
+                    approximate data-structures, you might not get the correct
+                    integer timestamp when printing it out (it might even be on
+                    a different day if it's close to midnight). By using
+                    seconds instead of milliseconds, the timestamps can be
+                    exact integers (at least until they
+                    <a href="http://en.wikipedia.org/wiki/Year_2038_problem">overflow</a>).
+                  </p>
+                  <p>
+                    If you must have millisecond precision, try this:
+                  </p>
+                  <p class="mono">
+                    &lt;span data-livestamp="<span id="nowMs"></span>"&gt;&lt;/span&gt;
+                  </p>
+                </li>
+              </ol>
+            </section>
+          </article>
+        </div>
+      </div>
+      <hr />
+      <footer>
+        &copy; 2012 Matt Bradley
+      </footer>
+      <br />
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="warp.js"></script>
+    <script src="moment.js"></script>
+    <script src="livestamp.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
