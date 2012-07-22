@@ -1,4 +1,4 @@
-[Livestamp.js](http://mattbradley.github.com/stubble)
+[Livestamp.js](http://mattbradley.github.com/livestampjs)
 =====================================================
 
 A simple, unobtrusive jQuery plugin that provides auto-updating timeago text to
@@ -17,4 +17,4 @@ License
 Copyright (c) 2012 Matt Bradley
 
 This software is freely distributable under the terms of the
-[MIT license](http://www.opensource.org/licenses/MIT).
+[MIT License](http://www.opensource.org/licenses/MIT).
