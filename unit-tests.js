@@ -196,13 +196,13 @@ var suite = {
         tester,
         data;
 
-    var originalHTML = '<h1>the time is now</h1>';
-    tester = $('<div data-livestamp="' + now + '">' + originalHTML + '</div>').appendTo('#test-area');
+    var originalHtml = '<h1>the time is now</h1>';
+    tester = $('<div data-livestamp="' + now + '">' + originalHtml + '</div>').appendTo('#test-area');
     $.livestamp.update();
     data = tester.data('livestampdata');
     test.notEqual(data, undefined, 'The internal data is stored in "livestampdata"');
     test.ok(data.original instanceof jQuery, 'A jQuery object is stored in the "original" property');
-    test.equal(data.original.clone().wrap('<div>').parent().html(), originalHTML, 'The original HTML is stored in the jQuery object');
+    test.equal(data.original.clone().wrap('<div>').parent().html().toLowerCase(), originalHtml, 'The original HTML is stored in the jQuery object');
     test.ok(moment.isMoment(data.moment), 'A Moment object is stored in the "moment" property');
     test.equal(data.moment.valueOf(), now * 1000, 'The timestamp is stored in the Moment object');
     test.equal(tester.attr('data-livestamp'), undefined, 'The data-livestamp attribute is removed');
@@ -281,7 +281,7 @@ var suite = {
     tester.livestamp('add');
     tester.livestamp('destroy');
     $.livestamp.update();
-    test.equal(tester.html(), '<span>original content</span>', "$.fn.livestamp('destroy') restores original content");
+    test.equal(tester.html().toLowerCase(), '<span>original content</span>', "$.fn.livestamp('destroy') restores original content");
     test.equal(tester.data('livestampdata'), undefined, "$.fn.livestamp('destroy') removes internal data");
 
     tester = $('<div>original one</div>').add('<div>original two</div>');

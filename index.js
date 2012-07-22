@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var nowMs = +new Date();
+  var nowMs = +new Date(),
       now = Math.floor(nowMs / 1000),
       oneminago = now - 1 * 60,
       fiveminago = now - 5 * 60,
