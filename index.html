@@ -52,9 +52,20 @@
             </header>
             <section>
               <p>
-                <strong>No extra JavaScript required!</strong> Just use an empty
-                span with the <code>data-livestamp</code> attribute set to the
-                desired Unix timestamp (in seconds), like this:
+                First thing's first: <strong>download the dependencies</strong>.
+                You'll need <a href="http://jquery.com" target="_blank">jQuery</a> (&gt;= 1.7)
+                and <a href="http://momentjs.com" target="_blank">Moment.js</a> (&gt;= 1.6). Once you've
+                got everything, put this somewhere in your page:
+              </p>
+              <pre>&lt;script src="jquery.js"&gt;&lt;/script&gt;<br />&lt;script src="moment.js"&gt;&lt;/script&gt;<br />&lt;script src="livestamp.js"&gt;&lt;/script&gt;</pre>
+            </section>
+            <hr />
+            <section>
+              <p>
+                <strong>No extra JavaScript required!</strong> Just use a
+                <code>&lt;span&gt;</code> with the <code>data-livestamp</code>
+                attribute set to the desired Unix timestamp (in seconds), like
+                this:
               </p>
               <pre>You discovered Livestamp.js &lt;span data-livestamp="<span class="now-display"></span>"&gt;&lt;/span&gt;.</pre>
               <p>
@@ -64,7 +75,7 @@
                 You discovered Livestamp.js <span class="livestamp now livestamp-display"></span>.
               </div>
               <p>
-                Wait half a minute &mdash; the livestamp will update automatically.
+                Wait half a minute &mdash; the livestamp will update automatically!
               </p>
             </section>
             <hr />
@@ -75,12 +86,12 @@
                 valid timestamp. The <code>&lt;abbr&gt;</code> element is a good
                 choice. For instance:
               </p>
-              <pre>Not even &lt;abbr title="<span id="fiveminago-title"></span>" data-livestamp="<span id="fiveminago-display"></span>"&gt;&lt;/abbr&gt;,<br />you were still looking for the perfect jQuery time-ago plugin.</pre>
+              <pre>Not even &lt;abbr title="<span id="fiveminago-title"></span>" data-livestamp="<span id="fiveminago-display"></span>"&gt;&lt;/abbr&gt;,<br />you were still looking for the perfect jQuery timeago plugin.</pre>
               <p>
                 Will assume this:
               </p>
               <div class="well">
-                Not even <abbr id="fiveminago" class="livestamp livestamp-display" title=""></abbr>, you were still looking for the perfect jQuery time-ago plugin.
+                Not even <abbr id="fiveminago" class="livestamp livestamp-display" title=""></abbr>, you were still looking for the perfect jQuery timeago plugin.
               </div>
             </section>
             <hr />
@@ -106,7 +117,7 @@
               <p>
                 Afraid of unobtrusive JavaScript? No sweat:
                 <strong>you can livestamp your elements manually using jQuery</strong>.
-                The <code>$.fn.livestamp()</code> function accepts a
+                The <code>$(&hellip;).livestamp()</code> function accepts a
                 <code>Date</code> object, a <code>Moment</code> object, or a
                 <code>Number</code> timestamp.
               </p>
@@ -122,7 +133,7 @@
                 Matt Bradley was born <span id="birth" class="livestamp">on June 18, 1987</span>.
               </div>
               <p>
-                Use <code>$.fn.livestamp('destroy')</code> to remove all
+                Use <code>$(&hellip;).livestamp('destroy')</code> to remove all
                 livestamp data and restore the element's original HTML.
               </p>
             </section>
