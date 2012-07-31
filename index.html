@@ -146,7 +146,7 @@
                 before the text is changed. Use this to implement stuff like
                 custom animations:
               </p>
-              <pre>This fade-in-fade-out animation started &lt;span id="animation"&gt;&lt;/span&gt;.<br />&lt;script&gt;<br />  $('#animation').on('change.livestamp', function(event, from, to) {<br />    event.preventDefault(); // Stop the text from changing automatically<br />    $(this).fadeOut(function() {<br />      $(this).html(to).fadeIn();<br />    }<br />  }).livestamp();<br />&lt;/script&gt;</pre>
+              <pre>This fade-in-fade-out animation started &lt;span id="animation"&gt;&lt;/span&gt;.<br />&lt;script&gt;<br />  $('#animation').on('change.livestamp', function(event, from, to) {<br />    event.preventDefault(); // Stop the text from changing automatically<br />    $(this).fadeOut(function() {<br />      $(this).html(to).fadeIn();<br />    });<br />  }).livestamp();<br />&lt;/script&gt;</pre>
               <p>
                 Will create this custom change animation:
               </p>
