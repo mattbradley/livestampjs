@@ -12,7 +12,7 @@
 
   prep = function($jq, timestamp) {
     if (!moment.isMoment(timestamp))
-      timestamp = parseFloat(timestamp) * 1000;
+      timestamp = parseFloat(timestamp) * 1e3;
 
     if (!isNaN(timestamp) || moment.isMoment(timestamp)) {
       var newData = $.extend({ }, { 'original': $jq.contents() }, $jq.data(lsData));
