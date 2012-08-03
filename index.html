@@ -4,9 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="Livestamp.js is a simple, unobtrusive jQuery plugin that provides auto-updating timeago text to your timestamped HTML elements using Moment.js." />
     <title>Livestamp.js - a simple, unobtrusive jQuery timeago plugin</title>
-    <link rel="stylesheet" href="bootstrap.min.css" />
-    <link rel="stylesheet" href="index.css" />
-    <!--[if lt IE 9]><script src="html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-32404308-2']);
@@ -22,6 +22,22 @@
   <body>
     <div class="container">
       <header class="hero-unit">
+        <div class="pull-right" style="margin: 2px 0 0 32px;">
+          <p>
+            <a href="https://raw.github.com/mattbradley/livestampjs/1.0.0/livestamp.min.js" class="btn btn-large btn-success" style="display: block;">
+              <i class="icon-download-alt icon-white"></i>
+              <strong>Production</strong> &bull; livestamp.min.js<br />
+              717 bytes <span style="font-size: 80%;">(minified, gzipped)</span>
+            </a>
+          </p>
+          <p>
+            <a href="https://raw.github.com/mattbradley/livestampjs/1.0.0/livestamp.js" class="btn" style="display: block;">
+              <i class="icon-download-alt"></i>
+              <strong>Development</strong> &bull; livestamp.js<br />
+              3.1k <span style="font-size: 90%;">(full source)</span>
+            </a>
+          </p>
+        </div>
         <h1>Livestamp.js</h1>
         <p>
           A simple, unobtrusive jQuery plugin that provides auto-updating
@@ -55,8 +71,8 @@
               <p>
                 First thing's first: <strong>download the dependencies</strong>.
                 You'll need <a href="http://jquery.com" target="_blank">jQuery</a> (&gt;= 1.7)
-                and <a href="http://momentjs.com" target="_blank">Moment.js</a> (&gt;= 1.6). Once you've
-                got everything, put this somewhere in your page:
+                and <a href="http://momentjs.com" target="_blank">Moment.js</a> (&gt;= 1.7).
+                Once you've got everything, put this somewhere in your page:
               </p>
               <pre>&lt;script src="jquery.js"&gt;&lt;/script&gt;<br />&lt;script src="moment.js"&gt;&lt;/script&gt;<br />&lt;script src="livestamp.js"&gt;&lt;/script&gt;</pre>
             </section>
@@ -160,11 +176,24 @@
         <div class="span4">
           <article>
             <header>
-              <h2>Where can I get it?</h2>
+              <h2>How can I get it?</h2>
             </header>
             <section>
               <p>
-                From the <a href="https://github.com/mattbradley/livestampjs">Livestamp.js GitHub repository</a>.
+                Click one of the buttons above to get Livestamp.js. The full
+                source and previous versions can be found at the 
+                <a href="https://github.com/mattbradley/livestampjs">Livestamp.js GitHub repository</a>.
+              </p>
+            </section>
+          </article>
+          <article>
+            <header>
+              <h2>I'm using it on my site!</h2>
+            </header>
+            <section>
+              <p>
+                Great! I'd like to know about it!
+                <a href="https://twitter.com/iammattbradley">Tweet me the url</a>.
               </p>
             </section>
           </article>
@@ -186,7 +215,7 @@
               <h2>Is it buggy?</h2>
             </header>
             <section>
-              I hope not! Check out the <a href="tests.html">unit tests</a>
+              Hell no! Check out the <a href="tests.html">unit tests</a>
               to run the test suite in your browser.
             </section>
           </article>
@@ -293,9 +322,9 @@
       <br />
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="warp.js"></script>
-    <script src="moment.js"></script>
-    <script src="livestamp.js"></script>
-    <script src="index.js"></script>
+    <script src="js/warp.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/livestamp.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>
