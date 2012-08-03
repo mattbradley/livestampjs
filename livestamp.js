@@ -1,8 +1,6 @@
-/* Copyright (c) 2012 Matt Bradley | Released under the MIT License */
-(function($) {
+// Livestamp.js / v1.0.0 / (c) 2012 Matt Bradley / MIT License
+(function($, moment) {
   var updateInterval = 1e3,
-      ls = 'livestamp',
-      lsData = 'livestampdata',
       paused = false,
       $livestamps = $([]),
 
@@ -15,13 +13,13 @@
       timestamp = parseFloat(timestamp) * 1e3;
 
     if (!isNaN(timestamp) || moment.isMoment(timestamp)) {
-      var newData = $.extend({ }, { 'original': $jq.contents() }, $jq.data(lsData));
+      var newData = $.extend({ }, { 'original': $jq.contents() }, $jq.data('livestampdata'));
       newData.moment = moment(timestamp);
 
-      $jq.data(lsData, newData)
+      $jq.data('livestampdata', newData)
         .empty()
         .removeAttr('data-livestamp')
-        .removeData(ls);
+        .removeData('livestamp');
 
       $livestamps = $livestamps.add($jq);
     }
@@ -35,16 +33,16 @@
 
   livestampGlobal = {
     update: function() {
-      $('[data-' + ls + ']').each(function() {
+      $('[data-livestamp]').each(function() {
         var $this = $(this);
-        prep($this, $this.data(ls));
+        prep($this, $this.data('livestamp'));
       });
 
       var toRemove = [ ];
 
       $livestamps.each(function() {
         var $this = $(this),
-            data = $this.data(lsData);
+            data = $this.data('livestampdata');
 
         if (data === undefined)
           toRemove.push(this);
@@ -100,7 +98,7 @@
       $livestamps = $livestamps.not($jq);
       $jq.each(function() {
         var $this = $(this),
-            data = $this.data(lsData);
+            data = $this.data('livestampdata');
 
         if (data === undefined)
           return $jq;
@@ -108,14 +106,14 @@
         $this
           .empty()
           .append(data.original !== undefined ? data.original : '')
-          .removeData(lsData);
+          .removeData('livestampdata');
       });
 
       return $jq;
     },
 
     isLivestamp: function($jq) {
-      return $jq.data(lsData) !== undefined;
+      return $jq.data('livestampdata') !== undefined;
     }
   };
 
@@ -132,4 +130,4 @@
 
     return this;
   };
-})(jQuery);
+})(jQuery, moment);
