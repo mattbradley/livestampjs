@@ -114,15 +114,20 @@ $(document).ready(function() {
 
 var suite = {
   'Unobtrusive livestamping': function(test) {
-    test.expect(7);
+    test.expect(8);
 
     var now = +new Date / 1000,
+        nowIso = moment.unix(now).format(),
         tester;
 
     tester = $('<div data-livestamp="' + now + '">this should change</div>').appendTo('#test-area');
     $.livestamp.update();
     test.notEqual(tester.text(), 'this should change', 'The data-livestamp attribute triggers livestamping');
-    test.equal(tester.text(), 'a few seconds ago', 'Current timestamp is "a few seconds ago"');
+    test.equal(tester.text(), 'a few seconds ago', 'The data-livestamp accepts a Number (Unix timestamp)');
+
+    tester = $('<div data-livestamp="' + nowIso + '">this should change</div>').appendTo('#test-area');
+    $.livestamp.update();
+    test.equal(tester.text(), 'a few seconds ago', 'The data-livestamp accepts a String (ISO 8601)');
 
     tester = $('<div data-livestamp="' + (now - 60 * 60 * 24 * 365) + '"></div>').appendTo('#test-area');
     $.livestamp.update();
@@ -141,35 +146,39 @@ var suite = {
 
     tester = $('<div data-livestamp="">should not change</div>').appendTo('#test-area');
     $.livestamp.update();
-    test.equal(tester.text(), 'should not change', 'Empty data-livestamp doesn\'t change the text');
+    test.equal(tester.text(), 'should not change', "Empty data-livestamp doesn't change the text");
 
     tester = $('<div data-livestamp="foo">should not change</div>').appendTo('#test-area');
     $.livestamp.update();
-    test.equal(tester.text(), 'should not change', 'Invalid data-livestamp doesn\'t change the text');
+    test.equal(tester.text(), 'should not change', "Invalid data-livestamp doesn't change the text");
 
     $('#test-area').empty();
     test.done();
   },
 
   'Manual livestamping': function(test) {
-    test.expect(7);
+    test.expect(8);
 
     var dateObject = new Date(+new Date - 1000 * 60),
         momentObject = moment(dateObject),
+        isoString = momentObject.format(),
         timestamp = +dateObject / 1000,
         tester;
 
     tester = $('<div></div>').appendTo('#test-area').livestamp();
     test.equal(tester.text(), 'a few seconds ago', '$.fn.livestamp() with no arguments uses the current datetime');
 
+    tester = $('<div></div>').appendTo('#test-area').livestamp(timestamp);
+    test.equal(tester.text(), 'a minute ago', '$.fn.livestamp([Number]) function accepts a Number (Unix timestamp)');
+
+    tester = $('<div></div>').appendTo('#test-area').livestamp(isoString);
+    test.equal(tester.text(), 'a minute ago', "$.fn.livestamp([String]) accepts a String (ISO 8601)");
+
     tester = $('<div></div>').appendTo('#test-area').livestamp(dateObject);
-    test.equal(tester.text(), 'a minute ago', '$.fn.livestamp() function accepts a Date object');
+    test.equal(tester.text(), 'a minute ago', '$.fn.livestamp([Date]) function accepts a Date object');
 
     tester = $('<div></div>').appendTo('#test-area').livestamp(momentObject);
-    test.equal(tester.text(), 'a minute ago', '$.fn.livestamp() function accepts a Moment object');
-
-    tester = $('<div></div>').appendTo('#test-area').livestamp(timestamp);
-    test.equal(tester.text(), 'a minute ago', '$.fn.livestamp() function accepts a Number');
+    test.equal(tester.text(), 'a minute ago', '$.fn.livestamp([Moment]) function accepts a Moment object');
 
     tester = $('<div>this should change</div>').appendTo('#test-area').livestamp(dateObject);
     $.livestamp.update();
@@ -211,14 +220,14 @@ var suite = {
     tester = $('<div data-livestamp=""></div>').appendTo('#test-area');
     $.livestamp.update();
     data = tester.data('livestampdata');
-    test.equal(data, undefined, 'Empty data-livestamp doesn\'t store data');
-    test.notEqual(tester.attr('data-livestamp'), undefined, 'Empty data-livestamp doesn\'t remove data-livestamp');
+    test.equal(data, undefined, "Empty data-livestamp doesn't store data");
+    test.equal(tester.attr('data-livestamp'), undefined, 'Empty data-livestamp removes data-livestamp');
 
     tester = $('<div data-livestamp="foo"></div>').appendTo('#test-area');
     $.livestamp.update();
     data = tester.data('livestampdata');
-    test.equal(data, undefined, 'Invalid data-livestamp doesn\'t store data');
-    test.notEqual(tester.attr('data-livestamp'), undefined, 'Invalid data-livestamp doesn\'t remove data-livestamp');
+    test.equal(data, undefined, "Invalid data-livestamp doesn't store data");
+    test.equal(tester.attr('data-livestamp'), undefined, 'Invalid data-livestamp removes data-livestamp');
     
     $('#test-area').empty();
     test.done();
@@ -260,21 +269,34 @@ var suite = {
   },
 
   '$.fn.livestamp functions': function(test) {
-    test.expect(10);
+    test.expect(14);
 
     var hourAgo = +new Date / 1000 - 60 * 60,
+        hourAgoIso = moment.unix(hourAgo).format(),
         tester;
+
+    tester = $('<div data-livestamp="' + hourAgo + '"></div>').appendTo('#test-area');
+    tester.livestamp();
+    test.equal(tester.text(), 'a few seconds ago', "$.fn.livestamp() with no argument uses current datetime");
+    test.notEqual(tester.text(), 'an hour ago', "$.fn.livestamp() ignores data-livestamp attribute");
+    test.equal(tester.attr('data-livestamp'), undefined, "$.fn.livestamp() removes data-livestamp attribute");
 
     tester = $('<div data-livestamp="' + hourAgo + '"></div>').appendTo('#test-area');
     tester.livestamp('add');
     test.equal(tester.text(), 'a few seconds ago', "$.fn.livestamp('add') with no argument uses current datetime");
     test.notEqual(tester.text(), 'an hour ago', "$.fn.livestamp('add') ignores data-livestamp attribute");
     test.equal(tester.attr('data-livestamp'), undefined, "$.fn.livestamp('add') removes data-livestamp attribute");
-    tester.livestamp('add', hourAgo);
-    test.equal(tester.text(), 'an hour ago', "$.fn.livestamp('add', [number]) accepts a Number");
-    tester.livestamp('add', new Date(hourAgo * 1000));
+
+    tester.empty().livestamp('add', hourAgo);
+    test.equal(tester.text(), 'an hour ago', "$.fn.livestamp('add', [Number]) accepts a Number (Unix timestamp)");
+
+    tester.empty().livestamp('add', hourAgoIso);
+    test.equal(tester.text(), 'an hour ago', "$.fn.livestamp('add', [String]) accepts a String (ISO 8601)");
+
+    tester.empty().livestamp('add', new Date(hourAgo * 1000));
     test.equal(tester.text(), 'an hour ago', "$.fn.livestamp('add', [Date]) accepts a Date object");
-    tester.livestamp('add', moment.unix(hourAgo));
+
+    tester.empty().livestamp('add', moment.unix(hourAgo));
     test.equal(tester.text(), 'an hour ago', "$.fn.livestamp('add', [Moment]) accepts a Moment object");
 
     tester = $('<div><span>original content</span></div>').appendTo('#test-area');

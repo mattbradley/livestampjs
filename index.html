@@ -20,18 +20,31 @@
     </script>
   </head>
   <body>
+    <nav class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a href="http://mattbradley.github.com/livestampjs" class="brand" style="font-weight: bold; color: #fff;">Livestamp.js</a>
+          <ul class="nav">
+            <li><a href="tests.html"><i class="icon-ok icon-white"></i> Unit Tests</a></li>
+            <li><a href="https://twitter.com/livestampjs"><i class="icon-share-alt icon-white"></i> @livestampjs</a></li>
+            <li><a href="https://github.com/mattbradley/livestampjs"><i class="icon-star icon-white"></i> GitHub</a></li>
+          </ul>
+          <p class="navbar-text pull-right">Current Release: <a href="https://raw.github.com/mattbradley/livestampjs/1.0.1/livestamp.min.js" class="label">v1.0.1</a></p>
+        </div>
+      </div>
+    </nav>
     <div class="container">
       <header class="hero-unit">
         <div class="pull-right" style="margin: 2px 0 0 32px;">
           <p>
-            <a href="https://raw.github.com/mattbradley/livestampjs/1.0.0/livestamp.min.js" class="btn btn-large btn-success" style="display: block;">
+            <a href="https://raw.github.com/mattbradley/livestampjs/1.0.1/livestamp.min.js" class="btn btn-large btn-success" style="display: block;">
               <i class="icon-download-alt icon-white"></i>
               <strong>Production</strong> &bull; livestamp.min.js<br />
-              717 bytes <span style="font-size: 80%;">(minified, gzipped)</span>
+              684 bytes <span style="font-size: 80%;">(minified, gzipped)</span>
             </a>
           </p>
           <p>
-            <a href="https://raw.github.com/mattbradley/livestampjs/1.0.0/livestamp.js" class="btn" style="display: block;">
+            <a href="https://raw.github.com/mattbradley/livestampjs/1.0.1/livestamp.js" class="btn" style="display: block;">
               <i class="icon-download-alt"></i>
               <strong>Development</strong> &bull; livestamp.js<br />
               3.1k <span style="font-size: 90%;">(full source)</span>
@@ -92,8 +105,27 @@
                 You discovered Livestamp.js <span class="livestamp now livestamp-display"></span>.
               </div>
               <p>
-                Wait half a minute &mdash; the livestamp will update automatically!
+                Wait half a minute &mdash; <em>the livestamp will update automatically!</em>
               </p>
+            </section>
+            <hr />
+            <section>
+              <p>
+                <strong><a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>
+                timestamps are also supported</strong> in the <code>data-livestamp</code> attribute.
+                This makes Livestamp.js compatible with other timeago plugins like
+                <a href="http://timeago.yarp.com/" target="_blank">jQuery timeago</a> and
+                <a href="http://pragmaticly.github.com/smart-time-ago/" target="_blank">Smart Time Ago</a>.
+                Just use an ISO 8601 string, like this:
+              </p>
+              <pre>Livestamp.js was first released<br />&lt;span data-livestamp="2012-08-03T00:29:22-07:00"&gt;&lt;/span&gt;.</pre>
+              <p>
+                And it will report this:
+              </p>
+              <div class="well">
+                Livestamp.js was first released
+                <span class="livestamp livestamp-display" data-livestamp="2012-08-03T00:29:22-07:00"></span>.
+              </div>
             </section>
             <hr />
             <section>

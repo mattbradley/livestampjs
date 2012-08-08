@@ -1,4 +1,4 @@
-// Livestamp.js / v1.0.0 / (c) 2012 Matt Bradley / MIT License
+// Livestamp.js / v1.0.1 / (c) 2012 Matt Bradley / MIT License
 (function($, moment) {
   var updateInterval = 1e3,
       paused = false,
@@ -8,20 +8,21 @@
     livestampGlobal.resume();
   },
 
-  prep = function($jq, timestamp) {
-    if (!moment.isMoment(timestamp))
-      timestamp = parseFloat(timestamp) * 1e3;
+  prep = function($el, timestamp) {
+    var oldData = $el.data('livestampdata');
+    if (typeof timestamp == 'number')
+      timestamp *= 1e3;
 
-    if (!isNaN(timestamp) || moment.isMoment(timestamp)) {
-      var newData = $.extend({ }, { 'original': $jq.contents() }, $jq.data('livestampdata'));
+    $el.removeAttr('data-livestamp')
+      .removeData('livestamp');
+
+    timestamp = moment(timestamp);
+    if (moment.isMoment(timestamp) && !isNaN(+timestamp)) {
+      var newData = $.extend({ }, { 'original': $el.contents() }, oldData);
       newData.moment = moment(timestamp);
 
-      $jq.data('livestampdata', newData)
-        .empty()
-        .removeAttr('data-livestamp')
-        .removeData('livestamp');
-
-      $livestamps = $livestamps.add($jq);
+      $el.data('livestampdata', newData).empty();
+      $livestamps = $livestamps.add($el);
     }
   },
 
@@ -79,29 +80,29 @@
   },
 
   livestampLocal = {
-    add: function($jq, timestamp) {
-      if (timestamp === undefined || timestamp instanceof Date)
-        timestamp = moment(timestamp);
+    add: function($el, timestamp) {
+      if (typeof timestamp == 'number')
+        timestamp *= 1e3;
+      timestamp = moment(timestamp);
 
-      if (typeof timestamp != 'number' && !moment.isMoment(timestamp))
-        return $jq;
+      if (moment.isMoment(timestamp) && !isNaN(+timestamp)) {
+        $el.each(function() {
+          prep($(this), timestamp);
+        });
+        livestampGlobal.update();
+      }
 
-      $jq.each(function() {
-        prep($(this), timestamp);
-      });
-
-      livestampGlobal.update();
-      return $jq;
+      return $el;
     },
 
-    destroy: function($jq) {
-      $livestamps = $livestamps.not($jq);
-      $jq.each(function() {
+    destroy: function($el) {
+      $livestamps = $livestamps.not($el);
+      $el.each(function() {
         var $this = $(this),
             data = $this.data('livestampdata');
 
         if (data === undefined)
-          return $jq;
+          return $el;
 
         $this
           .empty()
@@ -109,25 +110,22 @@
           .removeData('livestampdata');
       });
 
-      return $jq;
+      return $el;
     },
 
-    isLivestamp: function($jq) {
-      return $jq.data('livestampdata') !== undefined;
+    isLivestamp: function($el) {
+      return $el.data('livestampdata') !== undefined;
     }
   };
 
   $.livestamp = livestampGlobal;
   $(init);
   $.fn.livestamp = function(method, options) {
-    if (typeof method !== 'string') {
+    if (!$.isFunction(livestampLocal[method])) {
       options = method;
       method = 'add';
     }
 
-    if ($.isFunction(livestampLocal[method]))
-      return livestampLocal[method](this, options);
-
-    return this;
+    return livestampLocal[method](this, options);
   };
 })(jQuery, moment);
