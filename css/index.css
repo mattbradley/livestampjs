@@ -1,13 +1,10 @@
-body { padding-top: 64px; }
 article { margin-bottom: 20px; }
 article header { border-bottom: 1px solid #ccc; margin-bottom: 10px; }
 code { white-space: nowrap; }
 hr { border-top-color: #ccc; }
-footer { text-align: right; }
 #what-does-it-do section { height: 162px; text-align: center; }
 #what-does-it-do .well { font-size: 25px; }
 #original-span { margin-bottom: 3px; }
 .down-arrow { line-height: 30px; font-size: 30px; padding-bottom: 9px; }
 .livestamp-display, #birth { font-weight: bold; }
 .mono { font-family: Menlo, Monaco, Consolas, "Courier New", monospace; }
-::selection, ::-moz-selection { text-shadow: none; background-color: rgba(0, 0, 255, 0.15);}

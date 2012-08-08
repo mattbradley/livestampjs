@@ -1,0 +1,5 @@
+body { padding-top: 64px; }
+footer { text-align: right; }
+.navbar .nav > li > a { padding: 10px 10px 11px; }
+.navbar .brand { font-weight: bold; color: #fff; }
+::selection, ::-moz-selection { text-shadow: none; background-color: rgba(0, 0, 255, 0.15);}

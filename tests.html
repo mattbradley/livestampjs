@@ -5,13 +5,8 @@
     <meta name="description" content="Livestamp.js is a simple, unobtrusive jQuery plugin that provides auto-updating timeago text to your timestamped HTML elements using Moment.js." />
     <title>Livestamp.js - Unit Tests</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <style>
-      ol#unit-tests { list-style-type: none; margin-left: 0; }
-      ol#unit-tests ul { list-style-type: none; display: none; }
-      ol#unit-tests li { cursor: pointer; }
-      ol#unit-tests li.open ul { display: block; }
-      ::selection, ::-moz-selection { text-shadow: none; background-color: rgba(0, 0, 255, 0.15);}
-    </style>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/tests.css" />
     <!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -25,17 +20,17 @@
       })();
     </script>
   </head>
-  <body style="padding-top: 64px;">
+  <body>
     <nav class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a href="http://mattbradley.github.com/livestampjs" class="brand" style="font-weight: bold; color: #fff;">Livestamp.js</a>
+          <a href="http://mattbradley.github.com/livestampjs" class="brand">Livestamp.js</a>
           <ul class="nav">
             <li><a href="tests.html"><i class="icon-ok icon-white"></i> Unit Tests</a></li>
-            <li><a href="https://twitter.com/livestampjs"><i class="icon-share-alt icon-white"></i> @livestampjs</a></li>
             <li><a href="https://github.com/mattbradley/livestampjs"><i class="icon-star icon-white"></i> GitHub</a></li>
+            <li><a href="https://twitter.com/livestampjs"><i class="icon-share-alt icon-white"></i> @livestampjs</a></li>
           </ul>
-          <p class="navbar-text pull-right">Current Release: <a href="https://raw.github.com/mattbradley/livestampjs/1.0.1/livestamp.min.js" class="label">v1.0.1</a></p>
+          <p class="navbar-text pull-right">Current Release: <a href="https://raw.github.com/mattbradley/livestampjs/1.0.1/livestamp.min.js" class="label" title="Download livestamp.min.js v1.0.1">v1.0.1</a></p>
         </div>
       </div>
     </nav><div class="container">
@@ -62,6 +57,11 @@
           <ol id="unit-tests"></ol>
         </div>
       </div>
+      <hr />
+      <footer>
+        &copy; 2012 Matt Bradley
+      </footer>
+      <br />
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="js/warp.js"></script>
