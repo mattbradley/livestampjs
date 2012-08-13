@@ -1,4 +1,4 @@
-// Livestamp.js / v1.1.0 / (c) 2012 Matt Bradley / MIT License
+// Livestamp.js / v1.1.1 / (c) 2012 Matt Bradley / MIT License
 (function($, moment) {
   var updateInterval = 1e3,
       paused = false,
@@ -105,8 +105,7 @@
           return $el;
 
         $this
-          .empty()
-          .append(data.original !== undefined ? data.original : '')
+          .html(data.original ? data.original : '')
           .removeData('livestampdata');
       });
 
@@ -121,7 +120,7 @@
   $.livestamp = livestampGlobal;
   $(init);
   $.fn.livestamp = function(method, options) {
-    if (!$.isFunction(livestampLocal[method])) {
+    if (!livestampLocal[method]) {
       options = method;
       method = 'add';
     }
