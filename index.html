@@ -31,9 +31,14 @@
             <li><a href="https://twitter.com/livestampjs"><i class="icon-share-alt icon-white"></i> @livestampjs</a></li>
           </ul>
           <p class="navbar-text pull-right">Current Release: <a href="https://raw.github.com/mattbradley/livestampjs/1.1.1/livestamp.min.js" class="label" title="Download livestamp.min.js v1.1.1">v1.1.1</a></p>
+          <ul class="nav pull-right">
+            <li id="warp"><a href="#"><i class="icon-time icon-white"></i> Warp</a></li>
+            <li class="divider-vertical"></li>
+          </ul>
         </div>
       </div>
-    </nav><div class="container">
+    </nav>
+    <div class="container">
       <header class="hero-unit">
         <div class="pull-right" style="margin: 2px 0 0 32px;">
           <p>
@@ -53,7 +58,7 @@
         </div>
         <h1>Livestamp.js</h1>
         <p>
-          A simple, unobtrusive jQuery plugin that provides auto-updating
+          A simple, unobtrusive jQuery plugin that provides <i>auto-updating</i>
           timeago text to your timestamped HTML elements using
           <a href="http://momentjs.com">Moment.js</a>.
         </p>
@@ -73,6 +78,11 @@
                 <div class="well mono">
                   &lt;span&gt;<span class="livestamp now hide"></span>&lt;/span&gt;
                 </div>
+                <p>
+                  The livestamp will update automatically as time goes by.
+                  <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>
+                  timestamps are also supported.
+                </p>
               </div>
             </section>
           </article>
@@ -314,7 +324,7 @@
                     Python, etc.) handle timestamps in seconds. This makes it easy
                     to print out a timestamp into HTML. In Ruby, for instance:
                   </p>
-                  <p class="mono">
+                  <p class="mono" style="font-size: 12px;">
                     &lt;span<br />&nbsp;data-livestamp="&lt;%= Time.now.to_i %&gt;"&gt;<br />&lt;/span&gt;
                   </p>
                 </li>
@@ -338,7 +348,7 @@
                   <p>
                     If you must have millisecond precision, try this:
                   </p>
-                  <p class="mono">
+                  <p class="mono" style="font-size: 12px;">
                     &lt;span data-livestamp="<span id="nowMs"></span>"&gt;&lt;/span&gt;
                   </p>
                 </li>
@@ -354,6 +364,8 @@
       <br />
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
     <script src="js/warp.js"></script>
     <script src="js/moment.js"></script>
     <script src="js/livestamp.js"></script>

@@ -2,9 +2,11 @@ article { margin-bottom: 20px; }
 article header { border-bottom: 1px solid #ccc; margin-bottom: 10px; }
 code { white-space: nowrap; }
 hr { border-top-color: #ccc; }
-#what-does-it-do section { height: 162px; text-align: center; }
-#what-does-it-do .well { font-size: 25px; }
+#what-does-it-do section { height: 200px; text-align: center; }
+#what-does-it-do .well { font-size: 24px; }
+#what-does-it-do p { text-align: left; }
 #original-span { margin-bottom: 3px; }
 .down-arrow { line-height: 30px; font-size: 30px; padding-bottom: 9px; }
 .livestamp-display, #birth { font-weight: bold; }
 .mono { font-family: Menlo, Monaco, Consolas, "Courier New", monospace; }
+#warp-factor { display: inline-block; width: 100px; cursor: pointer; }
