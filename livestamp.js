@@ -1,4 +1,4 @@
-// Livestamp.js / v1.1.1 / (c) 2012 Matt Bradley / MIT License
+// Livestamp.js / v1.1.2 / (c) 2012 Matt Bradley / MIT License
 (function($, moment) {
   var updateInterval = 1e3,
       paused = false,
@@ -22,7 +22,7 @@
       newData.moment = moment(timestamp);
 
       $el.data('livestampdata', newData).empty();
-      $livestamps = $livestamps.add($el);
+      $livestamps.push($el[0]);
     }
   },
 
@@ -39,8 +39,7 @@
         prep($this, $this.data('livestamp'));
       });
 
-      var toRemove = [ ];
-
+      var toRemove = [];
       $livestamps.each(function() {
         var $this = $(this),
             data = $this.data('livestampdata');
