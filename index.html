@@ -30,7 +30,7 @@
             <li><a href="https://github.com/mattbradley/livestampjs"><i class="icon-star icon-white"></i> GitHub</a></li>
             <li><a href="https://twitter.com/livestampjs"><i class="icon-share-alt icon-white"></i> @livestampjs</a></li>
           </ul>
-          <p class="navbar-text pull-right">Current Release: <a href="https://raw.github.com/mattbradley/livestampjs/1.1.1/livestamp.min.js" class="label" title="Download livestamp.min.js v1.1.1">v1.1.1</a></p>
+          <p id="current-release" class="navbar-text pull-right"></p>
           <ul class="nav pull-right">
             <li id="warp"><a href="#"><i class="icon-time icon-white"></i> Warp</a></li>
             <li class="divider-vertical"></li>
@@ -45,10 +45,10 @@
             <a href="https://raw.github.com/mattbradley/livestampjs/1.1.1/livestamp.min.js" class="btn btn-large btn-success" style="display: block;">
               <i class="icon-download-alt icon-white"></i>
               <strong>Production</strong> &bull; livestamp.min.js<br />
-              668 bytes <span style="font-size: 80%;">(minified, gzipped)</span>
+              671 bytes <span style="font-size: 80%;">(minified, gzipped)</span>
             </a>
           </p>
-          <p>
+          <p class="no-spacing">
             <a href="https://raw.github.com/mattbradley/livestampjs/1.1.1/livestamp.js" class="btn" style="display: block;">
               <i class="icon-download-alt"></i>
               <strong>Development</strong> &bull; livestamp.js<br />
@@ -57,7 +57,7 @@
           </p>
         </div>
         <h1>Livestamp.js</h1>
-        <p>
+        <p class="no-spacing">
           A simple, unobtrusive jQuery plugin that provides <i>auto-updating</i>
           timeago text to your timestamped HTML elements using
           <a href="http://momentjs.com">Moment.js</a>.
@@ -370,5 +370,6 @@
     <script src="js/moment.js"></script>
     <script src="js/livestamp.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/global.js"></script>
   </body>
 </html>

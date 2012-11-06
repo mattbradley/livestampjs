@@ -2,6 +2,7 @@ article { margin-bottom: 20px; }
 article header { border-bottom: 1px solid #ccc; margin-bottom: 10px; }
 code { white-space: nowrap; }
 hr { border-top-color: #ccc; }
+.no-spacing { margin-bottom: 0; }
 #what-does-it-do section { height: 200px; text-align: center; }
 #what-does-it-do .well { font-size: 24px; }
 #what-does-it-do p { text-align: left; }
