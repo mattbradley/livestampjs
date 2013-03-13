@@ -32,6 +32,11 @@
     setTimeout(run, updateInterval);
   },
 
+  removeCircRef = function($elements) {
+    delete $elements.prevObject;
+    return $elements;
+  },
+
   livestampGlobal = {
     update: function() {
       $('[data-livestamp]').each(function() {
@@ -59,7 +64,7 @@
         }
       });
 
-      $livestamps = $livestamps.not(toRemove);
+      $livestamps = removeCircRef($livestamps.not(toRemove));
     },
 
     pause: function() {
@@ -95,7 +100,7 @@
     },
 
     destroy: function($el) {
-      $livestamps = $livestamps.not($el);
+      $livestamps = removeCircRef($livestamps.not($el));
       $el.each(function() {
         var $this = $(this),
             data = $this.data('livestampdata');
