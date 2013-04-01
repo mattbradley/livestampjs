@@ -126,4 +126,4 @@
 
     return livestampLocal[method](this, options);
   };
-})(jQuery, moment);
+})(jQuery || Zepto, moment);
