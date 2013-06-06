@@ -1,5 +1,13 @@
 // Livestamp.js / v1.1.2 / (c) 2012 Matt Bradley / MIT License
-(function($, moment) {
+(function (plugin) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['jquery', 'moment'], plugin);
+  } else {
+    // Browser globals
+    plugin(jQuery, moment);
+  }
+}(function($, moment) {
   var updateInterval = 1e3,
       paused = false,
       $livestamps = $([]),
@@ -126,4 +134,4 @@
 
     return livestampLocal[method](this, options);
   };
-})(jQuery, moment);
+}));
