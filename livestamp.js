@@ -21,7 +21,7 @@
       var newData = $.extend({ }, { 'original': $el.contents() }, oldData);
       newData.moment = moment(timestamp);
 
-      $el.data('livestampdata', newData).empty();
+      $el.data('livestampdata', newData);
       $livestamps.push($el[0]);
     }
   },
