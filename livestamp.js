@@ -38,6 +38,10 @@
   },
 
   livestampGlobal = {
+    settings :
+    {
+      format : 0
+    },
     update: function() {
       $('[data-livestamp]').each(function() {
         var $this = $(this);
@@ -52,6 +56,10 @@
         if (data === undefined)
           toRemove.push(this);
         else if (moment.isMoment(data.moment)) {
+	  if ( livestampGlobal.settings.format == 1)
+          var from = $this.html(),
+              to = data.moment.twitterShort();
+  	  else
           var from = $this.html(),
               to = data.moment.fromNow();
 
