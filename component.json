@@ -7,8 +7,9 @@
   "dependencies": {},
   "development": {},
   "license": "MIT",
-  "main": "index.js",
+  "main": "livestamp.js",
   "scripts": [
-    "index.js"
+    "livestamp.js",
+    livestamp.min.js
   ]
 }
