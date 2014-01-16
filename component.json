@@ -10,6 +10,6 @@
   "main": "livestamp.js",
   "scripts": [
     "livestamp.js",
-    livestamp.min.js
+    "livestamp.min.js
   ]
 }
