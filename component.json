@@ -1,0 +1,15 @@
+{
+  "name": "livestampjs",
+  "repo": "mattbradley/livestampjs",
+  "description": "A simple, unobtrusive jQuery plugin that provides auto-updating timeago text",
+  "version": "1.1.2",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "main": "livestamp.js",
+  "scripts": [
+    "livestamp.js",
+    "livestamp.min.js"
+  ]
+}
