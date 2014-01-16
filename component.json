@@ -9,6 +9,7 @@
   "license": "MIT",
   "main": "livestamp.js",
   "scripts": [
-    "livestamp.js"
+    "livestamp.js",
+    "livestamp.min.js"
   ]
 }
