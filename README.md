@@ -4,6 +4,11 @@
 A simple, unobtrusive jQuery plugin that provides auto-updating timeago text to
 your timestamped HTML elements using [Moment.js](http://momentjs.com).
 
+Usage
+-----
+
+See the [livestamp documentation](http://mattbradley.github.com/livestampjs).
+
 Dependencies
 ------------
 
