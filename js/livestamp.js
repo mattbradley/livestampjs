@@ -1,4 +1,4 @@
-// Livestamp.js / v1.1.2 / (c) 2012 Matt Bradley / MIT License
+// Livestamp.js / v1.1.2 / (c) 2014 Matt Bradley / MIT License
 (function($, moment) {
   var updateInterval = 1e3,
       paused = false,
