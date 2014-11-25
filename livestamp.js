@@ -28,6 +28,12 @@
     if (moment.isMoment(timestamp) && !isNaN(+timestamp)) {
       var newData = $.extend({ }, { 'original': $el.contents() }, oldData);
       newData.moment = moment(timestamp);
+      var attr = $el.attr('livestampaltformat');
+      if (typeof attr !== typeof undefined && attr !== false) {
+        newData.livealtformat = attr;
+      } else {
+        newData.livealtformat = "LLLL";
+      }
 
       $el.data('livestampdata', newData).empty();
       $livestamps.push($el[0]);
@@ -63,6 +69,15 @@
             $this.trigger(e, [from, to]);
             if (!e.isDefaultPrevented())
               $this.html(to);
+          }
+          
+          var from = $this.attr("title"),
+              to = data.moment.format(data.livealtformat);
+          if (from != to) {
+            var e = $.Event('change.title');
+            $this.trigger(e, [from, to]);
+            if (!e.isDefaultPrevented())
+              $this.attr('title',to);
           }
         }
       });
