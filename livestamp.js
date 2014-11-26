@@ -9,6 +9,7 @@
   }
 }(function($, moment) {
   var updateInterval = 1e3,
+      useNativeTimestamps = false,
       paused = false,
       $livestamps = $([]),
 
@@ -18,7 +19,7 @@
 
   prep = function($el, timestamp) {
     var oldData = $el.data('livestampdata');
-    if (typeof timestamp == 'number')
+    if ((typeof timestamp === 'number') && !useNativeTimestamps)
       timestamp *= 1e3;
 
     $el.removeAttr('data-livestamp')
@@ -84,12 +85,19 @@
       if (interval === undefined)
         return updateInterval;
       updateInterval = interval;
+    },
+
+    nativeTimestamps: function(nativeTimestamps) {
+      if (nativeTimestamps === undefined) {
+        return useNativeTimestamps;
+      }
+      useNativeTimestamps = nativeTimestamps;
     }
   },
 
   livestampLocal = {
     add: function($el, timestamp) {
-      if (typeof timestamp == 'number')
+      if ((typeof timestamp === 'number') && !useNativeTimestamps)
         timestamp *= 1e3;
       timestamp = moment(timestamp);
 
