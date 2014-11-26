@@ -10,6 +10,7 @@
 }(function($, moment) {
   var updateInterval = 1e3,
       paused = false,
+      updateID = null,
       $livestamps = $([]),
 
   init = function() {
@@ -37,11 +38,17 @@
   run = function() {
     if (paused) return;
     livestampGlobal.update();
-    setTimeout(run, updateInterval);
   },
 
   livestampGlobal = {
     update: function() {
+      // Clear any timeout in case we're called before it fires.
+      clearTimeout(updateID);
+      // Schedule the next update if appropriate.
+      if (!paused) {
+        updateID = setTimeout(run, updateInterval);
+      }
+
       $('[data-livestamp]').each(function() {
         var $this = $(this);
         prep($this, $this.data('livestamp'));
