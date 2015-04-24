@@ -25,6 +25,10 @@
       .removeData('livestamp');
 
     timestamp = moment(timestamp);
+    if ($.livestampTimeFrom !== undefined) {
+      timestamp.subtract(timestamp.diff(moment.unix($.livestampTimeFrom)));
+    }
+
     if (moment.isMoment(timestamp) && !isNaN(+timestamp)) {
       var newData = $.extend({ }, { 'original': $el.contents() }, oldData);
       newData.moment = moment(timestamp);
