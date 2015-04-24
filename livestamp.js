@@ -26,7 +26,7 @@
 
     timestamp = moment(timestamp);
     if ($.livestampTimeFrom !== undefined) {
-      timestamp.add(timestamp.diff(moment.unix($.livestampTimeFrom)));
+        timestamp.subtract(moment.unix($.livestampTimeFrom).diff(moment()));
     }
 
     if (moment.isMoment(timestamp) && !isNaN(+timestamp)) {
