@@ -1,4 +1,4 @@
-// Livestamp.js / v1.1.2 / (c) 2014 Matt Bradley / MIT License
+// Livestamp.js / v2.0.0 / (c) 2015 Matt Bradley / MIT License
 (function (plugin) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.

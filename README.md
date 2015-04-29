@@ -19,7 +19,7 @@ Dependencies
 License
 -------
 
-Copyright (c) 2014 Matt Bradley
+Copyright (c) 2015 Matt Bradley
 
 This software is freely distributable under the terms of the
 [MIT License](http://www.opensource.org/licenses/MIT).
