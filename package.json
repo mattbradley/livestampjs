@@ -1,0 +1,25 @@
+{
+  "name": "livestamp",
+  "version": "2.0.0",
+  "main": "livestamp",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattbradley/livestampjs.git"
+  },
+  "description": "A simple, unobtrusive jQuery plugin that provides auto-updating timeago text to your timestamped HTML elements using Moment.js.",
+  "keywords": ["livestamp", "timestamp", "timeago"],
+  "homepage": "http://mattbradley.github.com/livestampjs",
+  "bugs": "https://github.com/mattbradley/livestampjs/issues",
+  "license": "MIT",
+  "author": {
+      "name": "Matt Bradley",
+      "url": "https://twitter.com/mattbradley"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-gh-pages": "~0.9.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-bump": "0.0.13"
+  }
+}

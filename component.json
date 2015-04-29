@@ -1,15 +1,12 @@
 {
-  "name": "livestampjs",
-  "repo": "mattbradley/livestampjs",
-  "description": "A simple, unobtrusive jQuery plugin that provides auto-updating timeago text",
-  "version": "0.0.1",
-  "keywords": [],
+  "name": "livestamp",
+  "repository": "mattbradley/livestampjs",
+  "description": "A simple, unobtrusive jQuery plugin that provides auto-updating timeago text to your timestamped HTML elements using Moment.js.",
+  "version": "2.0.0",
+  "keywords": ["livestamp", "timestamp", "timeago"],
   "dependencies": {},
   "development": {},
   "license": "MIT",
   "main": "livestamp.js",
-  "scripts": [
-    "livestamp.js",
-    "livestamp.min.js
-  ]
+  "scripts": ["livestamp.js", "livestamp.min.js"]
 }
