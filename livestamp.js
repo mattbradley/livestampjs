@@ -50,13 +50,14 @@
       var toRemove = [];
       $livestamps.each(function() {
         var $this = $(this),
-            data = $this.data('livestampdata');
+            data = $this.data('livestampdata'),
+            includeSuffix = ($this.data('livestamp-suffix') === true);
 
         if (data === undefined)
           toRemove.push(this);
         else if (moment.isMoment(data.moment)) {
           var from = $this.html(),
-              to = data.moment.fromNow();
+              to = data.moment.fromNow(!includeSuffix);
 
           if (from != to) {
             var e = $.Event('change.livestamp');
